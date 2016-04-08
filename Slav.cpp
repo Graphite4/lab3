@@ -1,5 +1,11 @@
 #include "Slav.h"
 #include <fstream>
+#include <iterator>
+#include <time.h>
+#include <string>
+#include <cstdlib>
+
+
 
 using namespace std;
 
@@ -18,7 +24,12 @@ void Slav::init()
 
 Slav::Slav()
 {
-	static int amountOfNames = (init(), names.size());
+	static int amountOfNames = (init(), names.size()); 
+	// leniwa inicjalizacja - dzięki static operacja (zimportowanie imion 
+	//i przypisanie zmiennej ich liczby) wykona się tylko raz i dopiero
+	//wtedy (w ostatnim możliwym momencie), gdy będzie potrzebna (to jest
+	//przy tworzeniu pierwszego Słowianina)
+
 	_name = names[rand() % amountOfNames];
 	_id = _counter++;
 }
@@ -26,4 +37,9 @@ Slav::Slav()
 string Slav::description()
 {
 	return string("  ") + _name + " [" + to_string(_id) + "]";
+}
+
+Sex Slav::sex()
+{
+	return ((_name[_name.length()-1]=='a')? female: male);
 }

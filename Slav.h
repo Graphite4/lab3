@@ -4,6 +4,8 @@
 
 using namespace std;
 
+enum Sex {male,female};
+
 class Slav
 {
 private:
@@ -22,6 +24,7 @@ public:
 	
 	string name() { return _name; }
 	int id() { return _id; }
+	Sex sex();
 
 	string description();
 };
